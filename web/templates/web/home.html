@@ -1,0 +1,35 @@
+{% extends 'web/base.html' %}
+{% block title %}首页 - Multi-Omics BioDB{% endblock %}
+{% block content %}
+<div class="card">
+  <h1>多组学生物信息数据库</h1>
+  <p>本平台整合基因组、转录组、蛋白组、代谢组与表观组学数据，支持基因 ID 快速搜索与跨组学查询。</p>
+  <p><strong>示例基因ID：</strong><code>BRCA1</code>、<code>TP53</code>、<code>EGFR</code>。可直接进入 <a href="/search/?q=BRCA1">示例查询</a>。</p>
+</div>
+
+<div class="grid">
+  <div class="card">
+    <h3>快速检索</h3>
+    <p>在“基因检索”页面输入基因 ID 或 Symbol 进行查询。</p>
+    <a href="/search/">前往检索页 →</a>
+  </div>
+  <div class="card">
+    <h3>组学门户</h3>
+    <p>每个门户提供对应组学的数据说明、可用样本和分析入口。</p>
+    <a href="/portal/genomics/">浏览门户 →</a>
+  </div>
+</div>
+
+<div class="card">
+  <h3>最新示例基因</h3>
+  {% if featured_genes %}
+    <ul>
+      {% for gene in featured_genes %}
+        <li><a href="/gene/{{ gene.gene_id }}/">{{ gene.gene_id }}</a> - {{ gene.gene_symbol }} ({{ gene.species }})</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="muted">当前数据库尚无记录。请先在后台导入或通过迁移中的示例数据初始化。</p>
+  {% endif %}
+</div>
+{% endblock %}

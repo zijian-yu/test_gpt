@@ -1,0 +1,41 @@
+{% extends 'web/base.html' %}
+{% block title %}基因详情 - Multi-Omics BioDB{% endblock %}
+{% block content %}
+<div class="card">
+  {% if gene %}
+    <h1>{{ gene.gene_id }} ({{ gene.gene_symbol }})</h1>
+    <p>{{ gene.description }}</p>
+    <p><strong>物种：</strong>{{ gene.species }} | <strong>染色体：</strong>{{ gene.chromosome }} | <strong>区间：</strong>{{ gene.start }} - {{ gene.end }}</p>
+  {% else %}
+    <h1>未找到基因</h1>
+    <p>未查询到 ID 为 <code>{{ query_id }}</code> 的记录，请尝试其他 ID。</p>
+  {% endif %}
+</div>
+
+{% if gene %}
+<div class="card">
+  <h3>跨组学测量数据</h3>
+  {% if gene.measurements.all %}
+    <table>
+      <thead>
+        <tr><th>组学类型</th><th>样本</th><th>组织</th><th>条件</th><th>值</th><th>P值</th></tr>
+      </thead>
+      <tbody>
+      {% for m in gene.measurements.all %}
+        <tr>
+          <td>{{ m.get_omics_type_display }}</td>
+          <td>{{ m.sample_id }}</td>
+          <td>{{ m.tissue }}</td>
+          <td>{{ m.condition }}</td>
+          <td>{{ m.value }} {{ m.unit }}</td>
+          <td>{{ m.p_value|default:'-' }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p class="muted">该基因尚无跨组学测量记录。</p>
+  {% endif %}
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'web/base.html' %}
+{% block title %}基因检索 - Multi-Omics BioDB{% endblock %}
+{% block content %}
+<div class="card">
+  <h1>基因 ID 查询</h1>
+  <form method="get" action="/search/">
+    <input type="text" name="q" value="{{ keyword }}" placeholder="输入基因ID或Symbol，例如 BRCA1" />
+    <button type="submit">搜索</button>
+  </form>
+  <p class="muted">示例：<a href="/search/?q=TP53">TP53</a> | <a href="/search/?q=EGFR">EGFR</a> | <a href="/search/?q=BRCA1">BRCA1</a></p>
+</div>
+
+<div class="card">
+  {% if keyword and records %}
+    <h3>搜索结果（{{ records|length }}）</h3>
+    <table>
+      <thead>
+        <tr><th>Gene ID</th><th>Symbol</th><th>物种</th><th>描述</th></tr>
+      </thead>
+      <tbody>
+        {% for gene in records %}
+        <tr>
+          <td><a href="/gene/{{ gene.gene_id }}/">{{ gene.gene_id }}</a></td>
+          <td>{{ gene.gene_symbol }}</td>
+          <td>{{ gene.species }}</td>
+          <td>{{ gene.description|truncatechars:90 }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% elif keyword %}
+    <p>没有找到与 <code>{{ keyword }}</code> 匹配的基因记录。</p>
+  {% else %}
+    <p>请输入关键词开始检索。</p>
+  {% endif %}
+</div>
+{% endblock %}
