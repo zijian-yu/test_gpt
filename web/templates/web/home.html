@@ -1,0 +1,18 @@
+{% extends 'web/base.html' %}
+{% block title %}首页 - 我的 Django 网站{% endblock %}
+{% block content %}
+<h1>欢迎来到 Django 示例网站</h1>
+<p>这是一个用 Django 搭建的简单内容站点。</p>
+
+{% if posts %}
+  {% for post in posts %}
+    <article class="post">
+      <h2>{{ post.title }}</h2>
+      <p class="muted">发布时间：{{ post.created_at|date:'Y-m-d H:i' }}</p>
+      <p>{{ post.content }}</p>
+    </article>
+  {% endfor %}
+{% else %}
+  <p>暂无文章。你可以登录后台添加内容。</p>
+{% endif %}
+{% endblock %}
