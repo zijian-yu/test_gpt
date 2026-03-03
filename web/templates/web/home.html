@@ -32,4 +32,20 @@
     <p class="muted">当前数据库尚无记录。请先在后台导入或通过迁移中的示例数据初始化。</p>
   {% endif %}
 </div>
+{% block title %}首页 - 我的 Django 网站{% endblock %}
+{% block content %}
+<h1>欢迎来到 Django 示例网站</h1>
+<p>这是一个用 Django 搭建的简单内容站点。</p>
+
+{% if posts %}
+  {% for post in posts %}
+    <article class="post">
+      <h2>{{ post.title }}</h2>
+      <p class="muted">发布时间：{{ post.created_at|date:'Y-m-d H:i' }}</p>
+      <p>{{ post.content }}</p>
+    </article>
+  {% endfor %}
+{% else %}
+  <p>暂无文章。你可以登录后台添加内容。</p>
+{% endif %}
 {% endblock %}

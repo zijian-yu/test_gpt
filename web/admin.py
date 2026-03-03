@@ -14,3 +14,10 @@ class MultiOmicsMeasurementAdmin(admin.ModelAdmin):
     list_display = ('gene', 'omics_type', 'sample_id', 'tissue', 'value', 'p_value')
     list_filter = ('omics_type', 'tissue', 'condition')
     search_fields = ('gene__gene_id', 'gene__gene_symbol', 'sample_id')
+from .models import Post
+
+
+@admin.register(Post)
+class PostAdmin(admin.ModelAdmin):
+    list_display = ('title', 'created_at')
+    search_fields = ('title',)

@@ -34,6 +34,20 @@
     <a href="/portal/docs/">文档/API</a>
     <a href="/admin/">后台管理</a>
   </div>
+  <title>{% block title %}我的 Django 网站{% endblock %}</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2rem auto; max-width: 900px; line-height: 1.6; }
+    nav a { margin-right: 1rem; color: #0b62d6; text-decoration: none; }
+    .post { border: 1px solid #ddd; border-radius: 8px; padding: 1rem; margin-bottom: 1rem; }
+    .muted { color: #666; font-size: .9rem; }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/">首页</a>
+    <a href="/about/">关于</a>
+    <a href="/admin/">后台</a>
+  </nav>
   <hr />
   {% block content %}{% endblock %}
 </body>

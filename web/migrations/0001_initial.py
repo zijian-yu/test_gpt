@@ -98,4 +98,13 @@ class Migration(migrations.Migration):
             options={'ordering': ['omics_type', 'sample_id']},
         ),
         migrations.RunPython(seed_demo_data, migrations.RunPython.noop),
+            name='Post',
+            fields=[
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('title', models.CharField(max_length=120, verbose_name='标题')),
+                ('content', models.TextField(verbose_name='内容')),
+                ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='创建时间')),
+            ],
+            options={'ordering': ['-created_at']},
+        ),
     ]
