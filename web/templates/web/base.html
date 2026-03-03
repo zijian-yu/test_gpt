@@ -3,6 +3,37 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}Multi-Omics BioDB{% endblock %}</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 1.5rem auto; max-width: 1080px; line-height: 1.6; color: #1f2937; }
+    h1, h2, h3 { color: #0f172a; }
+    a { color: #1d4ed8; text-decoration: none; }
+    .top-nav, .sub-nav { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-bottom: .8rem; }
+    .top-nav a, .sub-nav a { padding: 0.2rem 0.5rem; border-radius: 6px; background: #eff6ff; }
+    .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 1rem; margin-bottom: 1rem; background: #fff; }
+    .muted { color: #6b7280; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 1rem; }
+    input[type="text"] { width: 360px; max-width: 100%; padding: .5rem; border: 1px solid #cbd5e1; border-radius: 6px; }
+    button { padding: .55rem .8rem; border: none; border-radius: 6px; background: #2563eb; color: #fff; cursor: pointer; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { border-bottom: 1px solid #e5e7eb; padding: .5rem; text-align: left; }
+    code { background: #f1f5f9; padding: .1rem .4rem; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <h2>Multi-Omics BioDB</h2>
+  <div class="top-nav">
+    <a href="/">首页</a>
+    <a href="/search/">基因检索</a>
+    <a href="/portal/genomics/">基因组学</a>
+    <a href="/portal/transcriptomics/">转录组学</a>
+    <a href="/portal/proteomics/">蛋白组学</a>
+    <a href="/portal/metabolomics/">代谢组学</a>
+    <a href="/portal/epigenomics/">表观组学</a>
+    <a href="/portal/downloads/">下载</a>
+    <a href="/portal/docs/">文档/API</a>
+    <a href="/admin/">后台管理</a>
+  </div>
   <title>{% block title %}我的 Django 网站{% endblock %}</title>
   <style>
     body { font-family: Arial, sans-serif; margin: 2rem auto; max-width: 900px; line-height: 1.6; }
